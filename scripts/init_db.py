@@ -24,22 +24,14 @@ for db in [DB_NAME, TEST_DB_NAME]:
 
     idempotent_table_create(
         cursor,
-        table_name="crew_member_quality",
-        column_definitions=[
-            ["id", "INTEGER", "PRIMARY KEY", "NOT NULL"],
-            ["description", "TEXT", "NOT NULL"],
-            ["crew_member_id", "INTEGER", "NOT NULL"],
-        ],
-        foreign_key_definitions=[["crew_member_id", "crew_member(id)"]],
-    )
-
-    idempotent_table_create(
-        cursor,
         table_name="delivery",
         column_definitions=[
             ["id", "INTEGER", "PRIMARY KEY", "NOT NULL"],
             ["contract_id", "INTEGER", "NOT NULL"],
-            ["delivered_on", "DATETIME", "NOT NULL"],
+            ["delivered_at", "DATETIME"],
+        ],
+        foreign_key_definitions=[
+            ["contract_id", "contract(id)"],
         ],
     )
 
@@ -53,6 +45,18 @@ for db in [DB_NAME, TEST_DB_NAME]:
         foreign_key_definitions=[
             ["delivery_id", "delivery(id)"],
             ["crew_member_id", "crew_member(id)"],
+        ],
+    )
+
+    idempotent_table_create(
+        cursor,
+        table_name="contract",
+        column_definitions=[
+            ["id", "INTEGER", "PRIMARY KEY", "NOT NULL"],
+            ["external_contract_id", "INTEGER", "NOT NULL"],
+            ["item", "TEXT", "NOT NULL"],
+            ["crew_size", "INTEGER", "NOT NULL"],
+            ["destination", "TEXT", "NOT NULL"],
         ],
     )
 

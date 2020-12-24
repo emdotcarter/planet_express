@@ -1,12 +1,14 @@
 import random
 
+from crew.crew_member import CrewMember
+
 
 class Scheduler:
     @classmethod
-    def assign_crew_members(cls, delivery):
-        available_crew_members = CrewMember.available_crew_members()
+    def assign_crew_members(cls, delivery, cursor):
+        available_crew_members = CrewMember.all(cursor)
 
-        selected_crew_members = available_crew_members.sample(
-            delivery.contract.crew_size
+        selected_crew_members = random.sample(
+            available_crew_members, delivery.contract(cursor).crew_size
         )
-        delivery.assign_crew(selected_crew_members)
+        delivery.assign_crew(selected_crew_members, cursor)
