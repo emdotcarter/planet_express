@@ -1,6 +1,3 @@
-from datetime import datetime, timezone
-import pytest
-
 from crew.crew_member import CrewMember
 
 

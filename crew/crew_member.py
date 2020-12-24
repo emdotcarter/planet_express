@@ -1,6 +1,3 @@
-import sqlite3
-
-
 class CrewMember:
     _DB_TABLE = "crew_member"
 

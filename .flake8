@@ -1,0 +1,8 @@
+[flake8]
+max-line-length = 110
+ignore =
+    missing-module-docstring,
+    missing-function-docstring
+exclude =
+    .git,
+    __pycache__

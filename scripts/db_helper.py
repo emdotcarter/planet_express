@@ -1,6 +1,3 @@
-import sqlite3
-
-
 def idempotent_table_create(
     cursor, table_name, column_definitions, foreign_key_definitions=[]
 ):
@@ -14,8 +11,8 @@ def idempotent_table_create(
                 for fk in foreign_key_definitions
             ]
         )
-        or None
-    )
+    ) or None
+
     table_definition_sql = ", ".join(filter(None, [column_sql, foreign_key_sql]))
 
     cursor.execute(f"CREATE TABLE {table_name} ({table_definition_sql});")

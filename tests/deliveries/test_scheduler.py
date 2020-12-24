@@ -1,12 +1,9 @@
 import pytest
-import sqlite3
 
-from config import TEST_DB_NAME
 from crew.crew_member import CrewMember
 from deliveries.contract import Contract
 from deliveries.delivery import Delivery
 from deliveries.scheduler import Scheduler
-
 
 # @pytest.fixture
 # def contract_api_response():
@@ -23,10 +20,12 @@ from deliveries.scheduler import Scheduler
 
 @pytest.fixture
 def contract(cursor):
-    c = Contract(external_contract_id="1", item="Hi", crew_size=2, destination="Hello")
-    c.save(cursor)
+    _contract = Contract(
+        external_contract_id="1", item="Hi", crew_size=2, destination="Hello"
+    )
+    _contract.save(cursor)
 
-    return c
+    return _contract
 
 
 @pytest.fixture

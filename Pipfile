@@ -8,6 +8,7 @@ name = "pypi"
 [dev-packages]
 pytest = "*"
 black = "==20.8b1"
+flake8 = "*"
 
 [requires]
 python_version = "3.7"

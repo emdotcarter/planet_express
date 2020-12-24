@@ -1,13 +1,12 @@
 import os
+import sqlite3
 import sys
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-import datetime
-import sqlite3
 
-from config import DB_NAME, TEST_DB_NAME
-from db_helper import idempotent_table_create
+from config import DB_NAME, TEST_DB_NAME  # noqa: E402
+from db_helper import idempotent_table_create  # noqa: E402
 
 for db in [DB_NAME, TEST_DB_NAME]:
     db_connection = sqlite3.connect(db)

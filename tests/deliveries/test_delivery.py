@@ -1,8 +1,5 @@
 from datetime import datetime, timezone
-import sqlite3
-import pytest
 
-from config import TEST_DB_NAME
 from deliveries.delivery import Delivery
 
 
